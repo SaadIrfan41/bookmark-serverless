@@ -12,10 +12,10 @@ const typeDefs = gql`
     getBookmarks: [Bookmark]!
   }
   type Bookmark {
-    id: ID
-    title: String
-    url: String
-    userid: String
+    id: ID!
+    title: String!
+    url: String!
+    userid: String!
   }
 
   type Mutation {
@@ -33,12 +33,13 @@ const resolvers = {
 
       try {
         const results = await client.query(
-          q.Paginate(q.Match(q.Index('filter_by_userid'), user))
+          q.Paginate(q.Match(q.Index('userid'), user))
         )
         return results.data.map(([ref, title, url]) => ({
           id: ref.id,
           title,
           url,
+          userid: user,
         }))
       } catch (error) {
         console.log(error)
