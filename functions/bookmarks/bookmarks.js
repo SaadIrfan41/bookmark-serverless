@@ -33,18 +33,13 @@ const resolvers = {
 
       try {
         const results = await client.query(
-          q.Map(
-            q.Paginate(q.Match(q.Index('filter_by_userid'), user)),
-            q.Lambda((x) => q.Get(x))
-          )
+          q.Paginate(q.Match(q.Index('filter_by_userid'), user))
         )
-        return results.data.map((bookmark) => {
-          return {
-            id: bookmark.ref.id,
-            title: bookmark.data.title,
-            url: bookmark.data.url,
-          }
-        })
+        return results.data.map(([ref, title, url]) => ({
+          id: ref.id,
+          title,
+          url,
+        }))
       } catch (error) {
         console.log(error)
       }

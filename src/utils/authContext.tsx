@@ -14,7 +14,6 @@ export const AuthContextProvider = ({ children }: any) => {
   const [loading, setloading] = useState(true)
 
   useEffect(() => {
-    netlifyIdentity.init({})
     netlifyIdentity.on('login', (user) => {
       setUser(user)
       netlifyIdentity.close()
