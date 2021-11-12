@@ -12,10 +12,10 @@ const typeDefs = gql`
     getBookmarks: [Bookmark]!
   }
   type Bookmark {
-    id: ID!
-    title: String!
-    url: String!
-    userid: String!
+    id: ID
+    title: String
+    url: String
+    userid: String
   }
 
   type Mutation {
