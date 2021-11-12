@@ -69,9 +69,7 @@ const index = () => {
   )
 
   useEffect(() => {
-    if (called) {
-      refetch()
-    }
+    refetch()
     console.log('UseEffect is called')
   }, [user])
 
@@ -86,7 +84,7 @@ const index = () => {
     console.log(error)
     return <h1>Error...</h1>
   }
-  // console.log(data)
+  console.log(data)
   const validationSchema = yup.object().shape({
     title: yup.string().required('*Enter Bookmark Title'),
     url: yup
