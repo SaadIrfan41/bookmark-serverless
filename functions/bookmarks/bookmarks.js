@@ -15,7 +15,7 @@ const typeDefs = gql`
     id: ID!
     title: String!
     url: String!
-    userid: String!
+    userid: String
   }
 
   type Mutation {
