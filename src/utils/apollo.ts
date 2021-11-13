@@ -12,11 +12,7 @@ const authLink = setContext((_, { headers }) => {
   netlifyIdentity.init({})
 
   const user = netlifyIdentity.currentUser()
-
-  let token = null
-  if (user) {
-    token = user.token.access_token
-  }
+  const token = user?.token?.access_token
 
   return {
     headers: {
@@ -27,6 +23,7 @@ const authLink = setContext((_, { headers }) => {
 })
 
 export const client = new ApolloClient({
+  //@ts-ignore
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 })
